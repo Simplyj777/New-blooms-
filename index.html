@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>New Bloom</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, #fff7fb 0%, #ffeef6 45%, #fff7ea 100%);
+      color: #5b3a4b;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    .hero, .card {
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 28px;
+      box-shadow: 0 10px 30px rgba(213, 146, 171, 0.18);
+    }
+    .hero { padding: 28px; margin-bottom: 24px; }
+    .badge {
+      display: inline-block; padding: 8px 14px; border-radius: 999px;
+      background: #fff; color: #c05784; font-weight: bold; margin-bottom: 12px;
+    }
+    h1 { font-size: 48px; margin: 0 0 12px; color: #b24675; }
+    h2 { margin: 0 0 10px; color: #b24675; }
+    p { line-height: 1.7; }
+    .top-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; }
+    .buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+    button {
+      border: 0; border-radius: 999px; padding: 12px 18px;
+      background: linear-gradient(90deg, #f292bb, #efb1c6, #f3d7a6);
+      color: white; font-weight: bold; cursor: pointer;
+    }
+    button.secondary { background: white; color: #b24675; border: 1px solid #f1c8d8; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .card { padding: 22px; }
+    .mini-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .mini-box {
+      background: rgba(255,255,255,0.85);
+      border-radius: 22px; padding: 16px;
+    }
+    .label { color: #8a6b78; font-size: 14px; }
+    .value { font-size: 34px; font-weight: bold; color: #b24675; margin: 6px 0; }
+    .feature-list div, .saved-report, .mini-note {
+      background: rgba(255,255,255,0.78);
+      border-radius: 18px; padding: 14px; margin-bottom: 12px;
+    }
+    input {
+      width: 100%; padding: 12px 14px; border-radius: 16px;
+      border: 1px solid #f0cddd; margin-top: 6px; margin-bottom: 14px;
+    }
+    .hidden { display: none; }
+    .summary {
+      background: linear-gradient(90deg, #fff2f6, #fff8ef);
+      border: 1px solid #f6dbe6;
+      border-radius: 22px; padding: 18px;
+    }
+    .status {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: #fff;
+      border: 1px solid #f1d6e2;
+      color: #8a6b78;
+      font-size: 14px;
+    }
+    .footer { margin-top: 24px; text-align: center; color: #8a6b78; }
+    @media (max-width: 900px) {
+      .top-grid, .grid, .mini-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <div class="badge">🌸 New Bloom</div>
+      <h1>Bloom into deeper self-discovery</h1>
+      <p>
+        New Bloom is an informational self-discovery website designed to help users understand themselves through multiple systems.
+        Chinese Zodiac provides personality insight based on birth year. Numerology analyzes names and birth dates to calculate core numbers.
+        Birth Chart introduces astrology through birth date, time, and place, with room to expand into full natal chart analysis later.
+      </p>
+    </div>
+
+    <div class="buttons">
+      <button onclick="showTab('home')">Home</button>
+      <button class="secondary" onclick="showTab('zodiac')">Chinese Zodiac</button>
+      <button class="secondary" onclick="showTab('numerology')">Numerology</button>
+      <button class="secondary" onclick="showTab('birthchart')">Birth Chart</button>
+    </div>
+
+    <div id="home" class="tab">
+      <div class="top-grid">
+        <div class="card">
+          <h2>Welcome to New Bloom</h2>
+          <p><strong>Chinese Zodiac</strong> explains personality traits, strengths, challenges, and career tendencies based on birth year.</p>
+          <p><strong>Numerology</strong> calculates Life Path, Expression, Soul Urge, Personality, and Personal Year to offer insight into life direction and inner motivations.</p>
+          <p><strong>Birth Chart</strong> introduces astrology using birth details to identify core placements such as sun sign, with room for future backend API expansion.</p>
+          <div class="feature-list">
+            <div><strong>Informational:</strong> each section explains concepts clearly so users learn while exploring.</div>
+            <div><strong>Structured:</strong> inputs create consistent outputs using numerology and astrology systems.</div>
+            <div><strong>Expandable:</strong> the platform is ready for backend integrations and advanced features.</div>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Planned Backend Features</h2>
+          <div class="feature-list">
+            <div>User authentication with secure login and saved dashboards</div>
+            <div>Database storage for saved readings and report history</div>
+            <div>Real astrology API for moon sign, rising sign, and houses</div>
+            <div>Advanced numerology engine with deeper interpretations</div>
+            <div>AI-generated personalized summaries based on all inputs</div>
+            <div>Styled PDF report generation</div>
+            <div>Subscription and payment system for premium features</div>
+            <div>Email delivery for saved readings and reports</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="zodiac" class="tab hidden">
+      <div class="grid">
+        <div class="card">
+          <h2>Chinese Zodiac</h2>
+          <label>Birth Year</label>
+          <input id="zodiacYear" placeholder="Example: 1998" />
+          <button onclick="runZodiac()">Reveal My Chinese Zodiac</button>
+        </div>
+        <div class="card">
+          <h2>Your Result</h2>
+          <div id="zodiacResult">Enter a birth year and click the button to see your result.</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="numerology" class="tab hidden">
+      <div class="grid">
+        <div class="card">
+          <h2>Numerology</h2>
+          <label>Full Name</label>
+          <input id="fullName" placeholder="Enter your full name" />
+          <label>Date of Birth</label>
+          <input id="dob" type="date" />
+          <button onclick="runNumerology()">Reveal My Numbers</button>
+        </div>
+        <div class="card">
+          <h2>Your Numbers</h2>
+          <div id="numerologyEmpty">Enter your name and birth date to reveal your numerology chart.</div>
+          <div id="numerologyResult" class="hidden">
+            <div class="mini-grid" id="numberCards"></div>
+            <div class="summary" style="margin-top:14px;">
+              <div class="label">Your Personal Year</div>
+              <div class="value" id="personalYearValue">-</div>
+              <p id="personalYearText"></p>
+            </div>
+            <div class="summary" style="margin-top:14px;">
+              <h3 style="margin-top:0;color:#b24675;">Full Report Summary</h3>
+              <p id="fullSummary"></p>
+            </div>
+            <div class="grid" style="margin-top:14px;">
+              <div class="mini-note">
+                <h3 style="margin-top:0;color:#b24675;">Download Your Reading</h3>
+                <p>Export a simple text version of your reading to keep for later.</p>
+                <button onclick="downloadReading()">Download Reading</button>
+              </div>
+              <div class="mini-note">
+                <h3 style="margin-top:0;color:#b24675;">Save Results to Backend</h3>
+                <input id="loginName" placeholder="Your name" />
+                <input id="loginEmail" placeholder="Your email" />
+                <button onclick="saveReport()">Save My Report</button>
+                <div id="saveStatus" class="status">Backend not called yet.</div>
+              </div>
+            </div>
+            <div id="savedReportsWrap" class="hidden" style="margin-top:14px;">
+              <div class="summary">
+                <h3 style="margin-top:0;color:#b24675;">Saved Reports (local preview)</h3>
+                <div id="savedReports"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="birthchart" class="tab hidden">
+      <div class="grid">
+        <div class="card">
+          <h2>Birth Chart</h2>
+          <label>Birth Date</label>
+          <input id="birthDate" type="date" />
+          <label>Birth Time</label>
+          <input id="birthTime" type="time" />
+          <label>Birth Place</label>
+          <input id="birthPlace" placeholder="City, State/Country" />
+          <button onclick="runBirthChart()">View Birth Chart Preview</button>
+        </div>
+        <div class="card">
+          <h2>Chart Preview</h2>
+          <div id="birthResult">Enter your birth details to see a preview.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">New Bloom • spring glow theme • self-discovery preview</div>
+  </div>
+
+  <script>
+    const API_BASE_URL = "http://localhost:3000";
+    const zodiacAnimals = ["Rat","Ox","Tiger","Rabbit","Dragon","Snake","Horse","Goat","Monkey","Rooster","Dog","Pig"];
+    const zodiacDetails = {
+      Rat:{traits:"Quick-minded, adaptable, resourceful, charming", strengths:"Smart decisions, social intelligence, survival instinct", challenges:"Overthinking, secrecy, nervous energy", career:"Research, sales, strategy, business, media"},
+      Ox:{traits:"Steady, dependable, patient, grounded", strengths:"Discipline, loyalty, consistency", challenges:"Stubbornness, resistance to change", career:"Management, finance, engineering, operations"},
+      Tiger:{traits:"Bold, magnetic, passionate, fearless", strengths:"Leadership, courage, independence", challenges:"Impulsiveness, restlessness", career:"Entrepreneurship, activism, entertainment, sports"},
+      Rabbit:{traits:"Gentle, thoughtful, elegant, intuitive", strengths:"Diplomacy, calm energy, emotional awareness", challenges:"Avoiding conflict, sensitivity", career:"Design, counseling, beauty, hospitality"},
+      Dragon:{traits:"Powerful, visionary, confident, vibrant", strengths:"Ambition, presence, big-picture thinking", challenges:"Intensity, pride, impatience", career:"Leadership, branding, public speaking, innovation"},
+      Snake:{traits:"Wise, mysterious, strategic, refined", strengths:"Deep thinking, intuition, elegance", challenges:"Distrust, emotional reserve", career:"Psychology, writing, research, luxury industries"},
+      Horse:{traits:"Free-spirited, energetic, expressive, driven", strengths:"Confidence, movement, charm", challenges:"Impatience, inconsistency", career:"Travel, sales, events, performance"},
+      Goat:{traits:"Creative, warm, empathetic, artistic", strengths:"Compassion, imagination, emotional depth", challenges:"Self-doubt, moodiness", career:"Art, wellness, education, nonprofit work"},
+      Monkey:{traits:"Clever, playful, inventive, curious", strengths:"Problem solving, wit, adaptability", challenges:"Scattered focus, trickster energy", career:"Tech, marketing, design, entrepreneurship"},
+      Rooster:{traits:"Sharp, expressive, organized, confident", strengths:"Presentation, precision, discipline", challenges:"Criticism, perfectionism", career:"Fashion, project leadership, analysis, communication"},
+      Dog:{traits:"Loyal, honest, protective, sincere", strengths:"Integrity, devotion, fairness", challenges:"Worry, cynicism, guardedness", career:"Law, advocacy, public service, counseling"},
+      Pig:{traits:"Warm, generous, sincere, pleasure-loving", strengths:"Kindness, abundance mindset, loyalty", challenges:"Overgiving, avoidance, indulgence", career:"Care work, hospitality, food, community building"}
+    };
+    const lifePathMeanings = {
+      1:"Independent, original, and called to lead.",2:"Sensitive, diplomatic, and naturally cooperative.",3:"Expressive, joyful, and creatively gifted.",4:"Reliable, practical, and here to build.",5:"Freedom-loving, versatile, and adventurous.",6:"Nurturing, loving, and service oriented.",7:"Introspective, spiritual, and analytical.",8:"Powerful, ambitious, and business-minded.",9:"Compassionate, wise, and humanitarian.",11:"Intuitive visionary with spiritual sensitivity.",22:"Master builder with the power to manifest big ideas.",33:"Master teacher with deep healing and heart energy."
+    };
+    const personalYearMeanings = {
+      1:"A year of fresh starts, independence, leadership, and planting new seeds.",2:"A slower year focused on patience, relationships, intuition, and emotional balance.",3:"A creative year for visibility, joy, self-expression, and social connection.",4:"A practical year for structure, hard work, stability, and building strong foundations.",5:"A year of movement, freedom, change, adventure, and major shifts.",6:"A heart-centered year focused on love, family, home, beauty, and responsibility.",7:"A reflective year for inner healing, spiritual growth, wisdom, and solitude.",8:"A powerful year for success, money, ambition, confidence, and authority.",9:"A transformational year of completion, release, forgiveness, and emotional clearing.",11:"A spiritually heightened year of intuition, inspiration, illumination, and awakening.",22:"A master builder year for turning dreams into reality through vision and grounded action.",33:"A sacred service year centered on compassion, healing, teaching, and upliftment."
+    };
+    let latestSummary = "";
+    let latestNumerology = null;
+    let savedReports = [];
+
+    function showTab(tab) {
+      document.querySelectorAll('.tab').forEach(el => el.classList.add('hidden'));
+      document.getElementById(tab).classList.remove('hidden');
+    }
+
+    function reduceNumber(num, keepMasters = true) {
+      let n = Number(num);
+      while (n > 9 && (!keepMasters || ![11,22,33].includes(n))) {
+        n = n.toString().split('').reduce((sum, digit) => sum + Number(digit), 0);
+      }
+      return n;
+    }
+
+    function charValue(char) {
+      const map = {A:1,J:1,S:1,B:2,K:2,T:2,C:3,L:3,U:3,D:4,M:4,V:4,E:5,N:5,W:5,F:6,O:6,X:6,G:7,P:7,Y:7,H:8,Q:8,Z:8,I:9,R:9};
+      return map[char.toUpperCase()] || 0;
+    }
+
+    function cleanName(name) { return (name || '').replace(/[^a-zA-Z]/g, ''); }
+    function calculateExpression(name) { return reduceNumber(cleanName(name).split('').reduce((sum, char) => sum + charValue(char), 0)); }
+    function calculateSoulUrge(name) { return reduceNumber(cleanName(name).split('').filter(ch => 'AEIOUaeiou'.includes(ch)).reduce((sum, ch) => sum + charValue(ch), 0) || 0); }
+    function calculatePersonality(name) { return reduceNumber(cleanName(name).split('').filter(ch => !'AEIOUaeiou'.includes(ch)).reduce((sum, ch) => sum + charValue(ch), 0) || 0); }
+    function calculateLifePath(dateStr) { return reduceNumber(dateStr.replace(/-/g,'').split('').map(Number).reduce((a,b)=>a+b,0)); }
+    function calculatePersonalYear(dateStr) {
+      const date = new Date(dateStr + 'T00:00:00');
+      const month = date.getMonth()+1; const day = date.getDate();
+      const yearReduced = reduceNumber(new Date().getFullYear().toString().split('').reduce((sum,d)=>sum+Number(d),0));
+      return reduceNumber(reduceNumber(month+day) + yearReduced);
+    }
+
+    function generateReading(number) {
+      const life = {1:"You are being called to step into leadership and trust yourself more.",2:"Your life is asking for balance, patience, and deeper emotional awareness.",3:"This is a time to express yourself and be seen authentically.",4:"Focus on building structure and creating long-term stability.",5:"Change is happening, so embrace it instead of resisting it.",6:"Relationships, love, and responsibility are central right now.",7:"You are in a phase of inner growth and self-reflection.",8:"Power, success, and confidence are being activated in your life.",9:"You are closing cycles and stepping into transformation."};
+      const career = {1:"Leadership roles, entrepreneurship, and independence-based careers align with you.",2:"You thrive in supportive roles like counseling, teamwork, or partnerships.",3:"Creative fields, content creation, and communication-based work suit you.",4:"Structured careers like finance, systems, or operations are ideal.",5:"Careers with freedom, travel, or variety will keep you fulfilled.",6:"Caregiving, teaching, and community-focused work align best.",7:"Research, spirituality, and analytical careers fit your energy.",8:"Business, leadership, and money-driven careers are strong paths.",9:"Humanitarian work, healing, and impact-driven careers suit you."};
+      const love = {1:"You need independence in love but also emotional openness.",2:"You seek deep emotional connection and harmony in relationships.",3:"You bring joy and expression into love but must avoid inconsistency.",4:"You are loyal and stable but may struggle with emotional expression.",5:"You need freedom in relationships and dislike feeling restricted.",6:"You are naturally loving and devoted, often prioritizing others.",7:"You are selective in love and need deep mental or spiritual connection.",8:"You value power, loyalty, and stability in relationships.",9:"You love deeply but must avoid overgiving."};
+      return { life: life[number] || "You are in a unique phase of growth.", career: career[number] || "Your career path is evolving.", love: love[number] || "Your love life is evolving." };
+    }
+
+    function runZodiac() {
+      const y = Number(document.getElementById('zodiacYear').value);
+      if (!y) return;
+      const animal = zodiacAnimals[((y - 4) % 12 + 12) % 12];
+      const d = zodiacDetails[animal];
+      document.getElementById('zodiacResult').innerHTML = `
+        <div class="mini-box"><div class="value" style="font-size:28px">${animal}</div></div>
+        <div class="mini-box"><strong>Traits:</strong> ${d.traits}</div>
+        <div class="mini-box"><strong>Strengths:</strong> ${d.strengths}</div>
+        <div class="mini-box"><strong>Challenges:</strong> ${d.challenges}</div>
+        <div class="mini-box"><strong>Career Energy:</strong> ${d.career}</div>
+      `;
+    }
+
+    function runNumerology() {
+      const name = document.getElementById('fullName').value;
+      const dob = document.getElementById('dob').value;
+      if (!name || !dob) return;
+      const results = {
+        lifePath: calculateLifePath(dob),
+        expression: calculateExpression(name),
+        soulUrge: calculateSoulUrge(name),
+        personality: calculatePersonality(name),
+        personalYear: calculatePersonalYear(dob)
+      };
+      latestNumerology = { ...results, name, dob };
+      const cards = [
+        ['Life Path', results.lifePath],
+        ['Expression', results.expression],
+        ['Soul Urge', results.soulUrge],
+        ['Personality', results.personality]
+      ];
+      document.getElementById('numberCards').innerHTML = cards.map(([label, value]) => {
+        const r = generateReading(value);
+        return `<div class="mini-box">
+          <div class="label">${label}</div>
+          <div class="value">${value}</div>
+          <p>${lifePathMeanings[value] || 'A unique energetic pattern.'}</p>
+          <p><strong>What this means right now:</strong> ${r.life}</p>
+          <p><strong>Career insight:</strong> ${r.career}</p>
+          <p><strong>Love insight:</strong> ${r.love}</p>
+        </div>`;
+      }).join('');
+      document.getElementById('personalYearValue').textContent = results.personalYear;
+      document.getElementById('personalYearText').textContent = personalYearMeanings[results.personalYear] || 'A year of meaningful growth and change.';
+      latestSummary = `Your chart highlights a Life Path ${results.lifePath}, Expression ${results.expression}, Soul Urge ${results.soulUrge}, Personality ${results.personality}, and Personal Year ${results.personalYear}. Right now, your numbers suggest a season of growth, deeper self-awareness, and clearer direction.`;
+      document.getElementById('fullSummary').textContent = latestSummary;
+      document.getElementById('numerologyEmpty').classList.add('hidden');
+      document.getElementById('numerologyResult').classList.remove('hidden');
+    }
+
+    function downloadReading() {
+      if (!latestSummary) return;
+      const blob = new Blob([latestSummary], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'new-bloom-reading.txt';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    async function saveReport() {
+      const name = document.getElementById('loginName').value;
+      const email = document.getElementById('loginEmail').value;
+      const status = document.getElementById('saveStatus');
+      if (!name || !email || !latestSummary || !latestNumerology) {
+        status.textContent = 'Fill out your numerology reading, name, and email first.';
+        return;
+      }
+
+      const payload = {
+        user: { name, email },
+        reading: {
+          ...latestNumerology,
+          summary: latestSummary
+        }
+      };
+
+      try {
+        status.textContent = 'Saving to backend...';
+        const res = await fetch(`${API_BASE_URL}/api/readings`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) throw new Error('Request failed');
+        const data = await res.json();
+        status.textContent = `Saved to backend. Record id: ${data.id}`;
+
+        savedReports.unshift({ name, email, summary: latestSummary, date: new Date().toLocaleDateString() });
+        document.getElementById('savedReportsWrap').classList.remove('hidden');
+        document.getElementById('savedReports').innerHTML = savedReports.map(r => `<div class="saved-report"><strong>${r.name}</strong><br><span class="label">${r.email} • ${r.date}</span><p>${r.summary}</p></div>`).join('');
+      } catch (err) {
+        status.textContent = 'Backend not running yet. Start the backend server in the backend folder.';
+      }
+    }
+
+    function runBirthChart() {
+      const date = document.getElementById('birthDate').value;
+      if (!date) return;
+      const d = new Date(date + 'T00:00:00');
+      const month = d.getMonth() + 1;
+      const day = d.getDate();
+      let sun = 'Pisces';
+      if ((month===3&&day>=21)||(month===4&&day<=19)) sun='Aries';
+      else if ((month===4&&day>=20)||(month===5&&day<=20)) sun='Taurus';
+      else if ((month===5&&day>=21)||(month===6&&day<=20)) sun='Gemini';
+      else if ((month===6&&day>=21)||(month===7&&day<=22)) sun='Cancer';
+      else if ((month===7&&day>=23)||(month===8&&day<=22)) sun='Leo';
+      else if ((month===8&&day>=23)||(month===9&&day<=22)) sun='Virgo';
+      else if ((month===9&&day>=23)||(month===10&&day<=22)) sun='Libra';
+      else if ((month===10&&day>=23)||(month===11&&day<=21)) sun='Scorpio';
+      else if ((month===11&&day>=22)||(month===12&&day<=21)) sun='Sagittarius';
+      else if ((month===12&&day>=22)||(month===1&&day<=19)) sun='Capricorn';
+      else if ((month===1&&day>=20)||(month===2&&day<=18)) sun='Aquarius';
+      document.getElementById('birthResult').innerHTML = `
+        <div class="mini-box"><div class="label">Sun Sign</div><div class="value" style="font-size:28px">${sun}</div></div>
+        <div class="mini-box"><strong>Summary:</strong> This preview gives you a clean starting point for your birth chart journey.</div>
+        <div class="mini-box"><strong>Next Backend Upgrade:</strong> Connect date, time, and birthplace to a real astrology API so users receive true natal chart placements.</div>
+      `;
+    }
+  </script>
+</body>
+</html>
